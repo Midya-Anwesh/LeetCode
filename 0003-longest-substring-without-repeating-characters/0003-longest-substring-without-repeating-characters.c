@@ -9,7 +9,6 @@ int lengthOfLongestSubstring(char* s) {
     int *h_table = (int*)malloc(sizeof(int) * 128);
     _init_arr(h_table);
     for (int i = 0; i < len; i++){
-        //char ch = s[i];
         if (h_table[(int)s[i]] == -1){
             temp_len += 1;
             h_table[(int)s[i]] = i;
