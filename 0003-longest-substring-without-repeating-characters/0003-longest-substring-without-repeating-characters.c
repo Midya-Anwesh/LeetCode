@@ -5,25 +5,18 @@ void _init_arr(int *arr){
 }
 
 int lengthOfLongestSubstring(char* s) {
-    int len = strlen(s), max_len = 0, temp_len = 0;
-    int *h_table = (int*)malloc(sizeof(int) * 128);
-    _init_arr(h_table);
-    for (int i = 0; i < len; i++){
-        if (h_table[(int)s[i]] == -1){
-            temp_len += 1;
-            h_table[(int)s[i]] = i;
+    int len = strlen(s), max_len = 0, left_idx = 0;
+    int *charIndex = (int*)malloc(sizeof(int) * 128);
+    _init_arr(charIndex);
+
+    for (int right_idx = 0; right_idx < len; right_idx++){
+        if (charIndex[s[right_idx]] >= left_idx){
+            left_idx = charIndex[s[right_idx]]+1;
         }
-        else{
-            int index = h_table[(int)s[i]], s_i = h_table[(int)s[i]]+1;
-            for (int j = 0; j < index; j++){
-                if ((s[j] != s[i]) && (h_table[(int)s[j]] < s_i) && (h_table[(int)s[j]] > -1)){
-                    h_table[(int)s[j]] = -1;
-                    temp_len -= 1;
-                }
-            }
-            h_table[(int)s[i]] = i;
-        }
-        max_len = (max_len > temp_len)? max_len:temp_len;
+        charIndex[s[right_idx]] = right_idx;
+        int curr_len = right_idx - left_idx + 1;
+        max_len = (max_len > curr_len)? max_len:curr_len;
     }
+    
     return max_len;
 }
