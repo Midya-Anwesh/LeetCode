@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-SELECT DISTINCE(l3.num) AS ConsecutiveNums FROM
+SELECT DISTINCT(l3.num) AS ConsecutiveNums FROM
 (
 (SELECT l2.id, l1.num FROM Logs l1
 JOIN Logs l2
