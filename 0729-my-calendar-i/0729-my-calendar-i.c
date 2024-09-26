@@ -17,11 +17,11 @@ bool isRoot(MyCalendar *obj){
 }
 
 bool overlap(MyCalendar *obj, int start, int end){
-    if ((start >= obj->booked_date[0] && start < obj->booked_date[1]) || \
-    (end > obj->booked_date[0] && end <= obj->booked_date[1])){
-        return true;
+    if ( (start < obj->booked_date[0] && end <= obj->booked_date[0]) || \
+    (start >= obj->booked_date[1] && end >= obj->booked_date[1])){
+        return false;
     }
-    return false;
+    return true;
 }
 
 void bookDate(MyCalendar *obj, int start, int end){
