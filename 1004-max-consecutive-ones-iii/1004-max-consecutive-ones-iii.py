@@ -7,15 +7,14 @@ class Solution:
 
         if k == 0:
             for i in range(len(nums)):
-                while i < len(nums) and nums[i] == 0:
+                if nums[i] == 0:
+                    while i < len(nums) and nums[i] == 0:
+                        i += 1
                     st = i
-                    i += 1
+                if i < len(nums) and nums[i] == 1:
+                    ret = max(ret, i-st+1)
 
-                while i < len(nums) and nums[i] == 1:
-                    ret = max(ret, i-st)
-                    i += 1
-
-            return ret if ret < len(nums)-1 else len(nums)
+            return ret 
                 
 
         while end < len(nums):
