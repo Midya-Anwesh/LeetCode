@@ -7,13 +7,6 @@ typedef struct Trie{
     int wordEnd;
 }TrieNode;
 
-void init(TrieNode *root){
-    for (int i = 0; i < 26; i++){
-        root->child[i] = NULL;
-    }
-    root->wordEnd = 0;
-}
-
 int concated(TrieNode *root, char *s, int index, int len){
     if (root == NULL){
         return 0;
@@ -45,7 +38,6 @@ void addWord(TrieNode **root, char *s, int len){
     for (int i = 0; i < len; i++){
         if (temp->child[s[i]-97] == NULL){
             temp->child[s[i]-97] = calloc(sizeof(TrieNode), 1);
-            // init(temp->child[s[i]-97]);
         }
         temp = temp->child[s[i]-97];
     }
