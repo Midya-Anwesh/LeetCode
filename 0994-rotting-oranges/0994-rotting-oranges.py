@@ -17,9 +17,11 @@ class Solution:
                         rottten_orenges.add((i, j))
         # 
         if no_of_rotten_orenges == 0:
-            return -1
-        elif no_of_fresh_orenges == 0:
+            if no_of_fresh_orenges > 0:
+                return -1
             return 0
+        # elif no_of_fresh_orenges == 0:
+        #     return 0
 
         def rot(row: int, col: int, cost: int = 0) -> None:
             nearby = [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]
