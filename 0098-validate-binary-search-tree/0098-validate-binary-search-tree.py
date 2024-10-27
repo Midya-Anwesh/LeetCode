@@ -43,20 +43,11 @@ class Solution:
                 # Max of left sub tree is less than value of current node and 
                 # Min of right sub tree is greater than value of current node
                 ans &= max(left_sub_tree) < root.val < min(right_sub_tree)
-
-            # If cuurent node doesn't satisfy the condition of bst then
-            # No need to check any furthur
-            if not ans:
-                raise Exception
             
             # Creating an array of all possible max and min value that can be reached by current node
             all_val = [*left_sub_tree, *right_sub_tree, root.val]
             # Return max value and min value that can be reached from the current node
             return [max(all_val), min(all_val)]
-        
-        try:
-            dfs(root)
-        except Exception:
-            return False
+        dfs(root)
 
         return ans
