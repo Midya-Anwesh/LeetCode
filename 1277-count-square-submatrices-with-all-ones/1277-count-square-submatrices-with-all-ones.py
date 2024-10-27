@@ -1,6 +1,5 @@
 class Solution:
     def countSquares(self, matrix: List[List[int]]) -> int:
-        dp = [[0 for _ in range(300)] for _ in range(300)]
         ret = 0
 
         for i in range(len(matrix)):
