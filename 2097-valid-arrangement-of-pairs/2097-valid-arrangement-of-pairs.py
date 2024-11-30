@@ -29,4 +29,8 @@ class Solution:
             if prev is not None:
                 ret.append([prev, vertex])
         hierholzer(start, None)
-        return ret[::-1]
+        
+        for i in range(len(ret)//2):
+            ret[i], ret[-(i+1)] = ret[-(i+1)], ret[i]
+        
+        return ret
