@@ -1,7 +1,10 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        nums.sort()
-        for i in range(1, len(nums)):
-            if nums[i] - nums[i-1] > 1:
-                return nums[i-1]+1
-        return nums[-1]+1 if nums[0] == 0 else 0
+        minimum, maximum, total = min(nums), max(nums), sum(nums)
+        if minimum != 0:
+            return 0
+        expected_sum = maximum * ((maximum+1)//2)
+        diff = expected_sum - total
+        if diff == 0:
+            return maximum+1
+        return diff
