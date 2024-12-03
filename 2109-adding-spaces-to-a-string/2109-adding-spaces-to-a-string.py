@@ -1,4 +1,3 @@
 class Solution:
     def addSpaces(self, s: str, spaces: List[int]) -> str:
-        spaces = set(spaces)
-        return "".join([" "+s[i] if i in spaces else s[i] for i in range(len(s))])
+        return " ".join(s[i:j] for i, j in zip([0]+spaces, spaces+[len(s)]))
