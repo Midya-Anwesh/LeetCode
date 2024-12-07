@@ -4,6 +4,14 @@ class Solution:
         maxBags = len(nums) + maxOperations
         total, st, end = 0, 1, nums[0]
 
+        def canDivide(ballCount: int) -> bool:
+            ops = 0
+            for num in nums:
+                ops += ceil(num/ballCount) - 1
+                if ops > maxOperations:
+                    return False
+            return True
+
         for num in nums:
             total += num
             end = max(end, num)
@@ -12,12 +20,9 @@ class Solution:
 
         while st <= end:
             mid = st + (end-st)//2
-            bagsNeeded = ceil(total / mid)
-
-            if bagsNeeded <= maxBags:
+            if canDivide(mid):
                 ret = min(ret, mid)
                 end = mid-1
-            
             else:
                 st = mid+1
 
