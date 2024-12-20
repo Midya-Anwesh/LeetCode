@@ -21,6 +21,10 @@ class Solution:
                 else:
                     ret.append([nums[i], nums[st], nums[end]])
                     st, end = st+1, end-1
+                    while st < end and nums[st] == nums[st-1]:
+                        st += 1
+                    while end > st and nums[end] == nums[end+1]:
+                        end -= 1
 
             i += 1
             while i < len(nums) and nums[i] == nums[i-1]:
