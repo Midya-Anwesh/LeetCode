@@ -3,10 +3,15 @@ class Solution:
     def numWays(self, words: List[str], target: str) -> int:
         char_dict = defaultdict(list)
         maxDepth = -float('inf')
+        freq = dict()
 
         for word in words:
             for idx, char in enumerate(word):
-                char_dict[idx].append(char)
+                if (idx, char) in freq:
+                    freq[(idx, char)] = freq.get((idx, char), 0) + 1
+                else:
+                    freq[(idx, char)] = freq.get((idx, char), 0) + 1
+                    char_dict[idx].append(char)
                 maxDepth = max(maxDepth, idx)
 
         @lru_cache(maxsize=None)
@@ -19,9 +24,8 @@ class Solution:
             total += dfs(currIndex+1, targetIndex)
             for char in char_dict[currIndex]:
                 if char == target[targetIndex]:
-                    total += dfs(currIndex+1, targetIndex+1)
+                    total += dfs(currIndex+1, targetIndex+1) * freq[(currIndex, char)]
             return total
 
         ans = dfs(0, 0)
-        print(dfs.cache_info())
         return ans % 1_000_000_007
