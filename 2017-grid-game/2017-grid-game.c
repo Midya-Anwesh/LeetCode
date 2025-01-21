@@ -1,4 +1,4 @@
-# pragma GCC optimize("O3", "mllvm", "polly")
+# pragma GCC optimize("O2")
 
 long long gridGame(int** grid, int gridSize, int* gridColSize) {
     // Build prefix sum for both rows 0 and 1
