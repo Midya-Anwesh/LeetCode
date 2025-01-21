@@ -1,3 +1,5 @@
+# pragma GCC optimize("O2")
+
 long long gridGame(int** grid, int gridSize, int* gridColSize) {
     // Build prefix sum for both rows 0 and 1
     long long *pSum0 = (long long*)calloc(sizeof(long long), (*gridColSize)+1), *pSum1 = (long long*)calloc(sizeof(long long), (*gridColSize)+1);
