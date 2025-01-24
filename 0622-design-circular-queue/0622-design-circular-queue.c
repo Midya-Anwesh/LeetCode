@@ -1,4 +1,4 @@
-
+#pragma GCC optimize("loop-unroll")
 /*typedef struct ListNode{
     int val;
     struct ListNode *next;
@@ -82,7 +82,7 @@ bool myCircularQueueIsFull(MyCircularQueue* obj) {
 
 void myCircularQueueFree(MyCircularQueue* obj) {
     // Free the linked list
-    while (obj -> front != NULL){
+    for (int i = 1; i <= (obj -> currSize); i++){
         struct ListNode *temp = obj -> front -> next;
         free(obj -> front);
         obj -> front = temp;
