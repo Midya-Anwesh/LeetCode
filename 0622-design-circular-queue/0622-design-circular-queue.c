@@ -46,14 +46,14 @@ bool myCircularQueueDeQueue(MyCircularQueue* obj) {
     if (! (obj -> front) ){
         return false;
     }
-    // Otherwise return value of front and remove it
-    int ret = obj -> front -> val;
-    if ((obj -> currSize) == 1){
+    // Else if it is the last element
+    else if ((obj -> front) == (obj -> rear)){
         obj -> rear = NULL;
     }
+    // Otherwise return value of front and remove it
+    struct ListNode *temp = obj -> front -> next;
     free(obj -> front);
-    obj -> front = NULL;
-    // Decrement the size
+    obj -> front = temp;
     (obj -> currSize) = (obj -> currSize) - 1;
     return true;
 }
@@ -73,7 +73,7 @@ int myCircularQueueRear(MyCircularQueue* obj) {
 }
 
 bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
-    return (obj -> currSize) < (obj -> maxSize);
+    return (obj -> currSize) == 0;
 }
 
 bool myCircularQueueIsFull(MyCircularQueue* obj) {
