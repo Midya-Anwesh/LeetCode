@@ -7,6 +7,5 @@ class Solution:
         for i, num in enumerate(nums):
             badPairs += i-len(diffMap[(i-num)])
             diffMap[(i-num)].add(i)
-        
-        print(diffMap)
+            
         return badPairs
