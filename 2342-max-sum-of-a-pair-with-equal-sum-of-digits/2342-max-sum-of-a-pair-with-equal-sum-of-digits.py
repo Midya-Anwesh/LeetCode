@@ -1,19 +1,21 @@
-from collections import defaultdict
-from heapq import heappop, heappush
-
 class Solution:
     def maximumSum(self, nums: List[int]) -> int:
-        numsDigitSum = list(sum(map(int, str(num))) for num in nums)
-        prevSums = defaultdict(list)
+        mat = [[-float('inf'), -float('inf')] for _ in range(82)]
         maxSum = -float('inf')
 
-        for i, num in enumerate(numsDigitSum):
-            heappush(prevSums[num], -nums[i])
-            if len(prevSums[num]) >= 2:
-                m1 = heappop(prevSums[num])
-                m2 = heappop(prevSums[num])
-                maxSum = max(maxSum, ((-1*m1) + (-1*m2)))
-                heappush(prevSums[num], m1)
-                heappush(prevSums[num], m2)
+        for i, num in enumerate(nums):
+            digitSum = 0
+            while num > 0:
+                digitSum += num%10
+                num //= 10
+            
+            if nums[i] >= mat[digitSum][0]:
+                mat[digitSum][1] = mat[digitSum][0]
+                mat[digitSum][0] = nums[i]
+
+            elif nums[i] > mat[digitSum][1]:
+                mat[digitSum][1] = nums[i]
+            
+            maxSum = max(maxSum, sum(mat[digitSum]))
         
         return maxSum if maxSum > -float('inf') else -1
