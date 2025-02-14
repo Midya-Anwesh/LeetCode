@@ -2,7 +2,7 @@ class ProductOfNumbers:
 
     def __init__(self):
         self.prefix = [1] # Prefix product array
-        self.rightMostZeroIndex = float('inf')
+        self.rightMostZeroIndex = -float('inf')
 
     def add(self, num: int) -> None:
         # If num is 0, then extende the prefix array with the same last element
