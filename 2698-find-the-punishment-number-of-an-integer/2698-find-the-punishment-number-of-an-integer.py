@@ -16,4 +16,4 @@ class Solution:
         return False
 
     def punishmentNumber(self, n: int) -> int:
-        return sum(num * num for num in filter(lambda i:self.valid(str(i*i), i, 0, 0), range(1, n+1)))
+        return sum(num * num for num in filter(lambda i:((i*i)%9 <= 1) and self.valid(str(i*i), i, 0, 0), range(1, n+1)))
