@@ -10,7 +10,7 @@ class Solution:
         nodeVal = []
         index = 0
         num = ""
-        while traversal[index].isdigit():
+        while index < len(traversal) and traversal[index].isdigit():
             num += traversal[index]
             index += 1
         nodeVal.append(int(num))
