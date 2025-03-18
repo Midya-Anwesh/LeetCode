@@ -1,7 +1,6 @@
-from heapq import heappush, heappop
 class Solution:
     def longestNiceSubarray(self, nums: List[int]) -> int:
-        indexOf = dict() # indexOf[1] = heap([1, 2]) means numbers at index 1 and 2 conrains 1 in position 1 in their binary representation
+        indexOf = dict() # indexOf[1] = 1 means numbers at index 1 conrains 1 in position 1 in the binary representation
 
         maxLen, st, end = 1, 0, 0
         for i in range(len(nums)):
@@ -12,12 +11,11 @@ class Solution:
                     # If there are other number before it which contain 1 in position 'pos'
                     # Then adjust the starting index of current window
                     if pos in indexOf:
-                        st = max(st, -indexOf[pos][0]+1)
-                        heappush(indexOf[pos], -i)
+                        st = max(st, indexOf[pos]+1)
+                        indexOf[pos] = i
                     # Otherwise just remember current index for future references
                     else:
-                        indexOf[pos] = []
-                        heappush(indexOf[pos], -i)
+                        indexOf[pos] = i
                 # Now check next bit of the number   
                 nums[i] >>= 1
                 pos += 1
