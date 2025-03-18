@@ -2,7 +2,7 @@ class Solution:
     def longestNiceSubarray(self, nums: List[int]) -> int:
         indexOf = dict() # indexOf[1] = 1 means numbers at index 1 conrains 1 in position 1 in the binary representation
 
-        maxLen, st, end = 1, 0, 0
+        maxLen, st = 1, 0
         for i in range(len(nums)):
             pos = 0
             while nums[i]:
