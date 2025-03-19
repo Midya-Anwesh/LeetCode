@@ -18,9 +18,7 @@ class Solution:
         while st < end:
             dx ^= diffMap.get(st, 0)
             nums[st] ^= dx
-            st += 1
-        
-        for num in nums:
-            if num == 0:
+            if nums[st] == 0:
                 return -1
+            st += 1
         return flips
