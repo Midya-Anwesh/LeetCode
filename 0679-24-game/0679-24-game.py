@@ -31,7 +31,6 @@ class Solution:
 
         elif ub-lb == 2:
             for op in self.operetors:
-
                 yield eval(f"{cards[lb]}{op}{cards[ub-1]}")
 
         else:
