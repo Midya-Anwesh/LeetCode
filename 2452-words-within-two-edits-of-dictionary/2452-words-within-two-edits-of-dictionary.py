@@ -28,18 +28,20 @@ class Trie:
 
         def dfs(node: Optional[TrieNode], edits: int, idx: int) -> bool:
             curr = ord(word[idx]) - 97
+            found = False
             # If it's the last letter
             if idx == len(word)-1:
-                # If we have edits available just return true
+                # If we have edits available just return true if ther is any word available of the same length
                 if edits > 0:
-                    return True
+                    for i in range(26):
+                        if node.childs[i] is not None:
+                            found |= node.childs[i].wordEnd
                 # Othwise return if it's a word end
                 if node.childs[curr] is not None:
-                    return node.childs[curr].wordEnd
-                return False
+                    found |= node.childs[curr].wordEnd
+                return found
 
             # Traverse for current letter in trie
-            found = False
             if node.childs[curr] is not None:
                 found |= dfs(node.childs[curr], edits, idx+1)
 
